@@ -1,18 +1,25 @@
 {
   "files": {
-    "main.css": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/css/main.12d852b1.css",
-    "main.js": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/js/main.c50266b2.js",
-    "static/media/EOS_PRODUCT.png": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/media/EOS_PRODUCT.e68685849e59894b23fc.png",
-    "static/media/satellite-stock.jpeg": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/media/satellite-stock.7b0013d6ad1d5e5d1b37.jpeg",
-    "static/media/inSAR_diagram.png": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/media/inSAR_diagram.dee63d5adcf80edea628.png",
-    "static/media/EOS-RS-Logo.png": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/media/EOS-RS-Logo.0e08716d6733abf50678.png",
-    "index.html": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/index.html",
-    "static/media/noise.svg": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/media/noise.46169fe3bf16f4e975f2d782397cb535.svg",
-    "main.12d852b1.css.map": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/css/main.12d852b1.css.map",
-    "main.c50266b2.js.map": "https://earthobservatory.github.io/REACT-EOS-PRODUCTS/static/js/main.c50266b2.js.map"
+    "main.css": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/css/main.12d852b1.css",
+    "main.js": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.f45a4911.js",
+    "static/media/garage_gang_pic.jpg": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/garage_gang_pic.05e4f5e3d144f588b8dc.jpg",
+    "static/media/PROFILE PIC.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/PROFILE PIC.798457f7c8eec972d467.png",
+    "static/media/Garage_Gang_Pic.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/Garage_Gang_Pic.d9cc2493b522d787db5e.png",
+    "static/media/doodle-background.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/doodle-background.63c71ca27eadf67732eb.png",
+    "static/media/carrot-bg.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/carrot-bg.6b0aeb653d4174657566.png",
+    "static/media/innovator-icon.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/innovator-icon.9bc64a933e6d9e90e33f.png",
+    "static/media/singapore-bg.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/singapore-bg.1281a6f4ae80d6f4eb36.png",
+    "static/media/white-garage-logo.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/white-garage-logo.c56d29c781b38c8d35b3.png",
+    "static/media/blue-garage-logo.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/blue-garage-logo.a165c03a4a233d855f96.png",
+    "static/media/garage_linktree.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/garage_linktree.a201f89da62dd1e7842b.png",
+    "static/media/singapore-icon.jpeg": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/singapore-icon.77a2f2dd5ac6b0552d0d.jpeg",
+    "index.html": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/index.html",
+    "static/media/noise.svg": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/noise.46169fe3bf16f4e975f2d782397cb535.svg",
+    "main.12d852b1.css.map": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/css/main.12d852b1.css.map",
+    "main.f45a4911.js.map": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.f45a4911.js.map"
   },
   "entrypoints": [
     "static/css/main.12d852b1.css",
-    "static/js/main.c50266b2.js"
+    "static/js/main.f45a4911.js"
   ]
 }

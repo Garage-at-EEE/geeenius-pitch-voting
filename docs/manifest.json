@@ -1,9 +1,9 @@
 {
-  "short_name": "EOS-RS",
-  "name": "EOS-RS Products",
+  "short_name": "GEEEnius",
+  "name": "GEEEnius Investment",
   "icons": [
     {
-      "src": "/static/EOS-logo.ico",
+      "src": "/static/Garage_Icon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
