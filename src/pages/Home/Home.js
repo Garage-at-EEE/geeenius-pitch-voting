@@ -23,8 +23,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import moment from "moment";
 import { Parallax } from "react-parallax";
 
-const itemsPerPage = 8;
-
 const HeroComponent = () => {
   return (
     <Parallax
@@ -132,10 +130,6 @@ const HeroComponent = () => {
 const HomePage = () => {
   const metadata = useMetadataContext();
   const Navigate = useNavigate();
-  const [query, setQuery] = useState("");
-  const [startDate, setStartDate] = useState(moment().subtract(6, "months"));
-  const [endDate, setEndDate] = useState(moment());
-  const [filter, setFilter] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
 
@@ -152,71 +146,9 @@ const HomePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-
-  const filteredMetadata = metadata?.filter((item) => {
-    return (
-      item.product_list[0].prod_desc
-        .toLowerCase()
-        .includes(query.toLowerCase()) &&
-      (filter.length == 0 ||
-        item.event_type_tags.some((r) => {
-          return filter.map((i) => i.toLowerCase()).includes(r);
-        }))
-    );
-  });
-
-  const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedData = filteredMetadata?.slice(startIndex, endIndex);
-
-  useEffect(() => {
-    setPage(1);
-  }, [filteredMetadata?.length]);
-
-  const handleChange = (event) => {
-    setQuery(event.target.value);
-  };
-
-  const mostRecentMetadata = metadata?.filter((item) => {
-    const itemDate = moment(item.event_start);
-    return itemDate.isAfter(startDate) && itemDate.isBefore(endDate);
-  });
-
-  const MapEventCards = (inputData) => {
-    return inputData?.map((item) => {
-      var latestProduct = item.product_list.find((data) => {
-        return data.isLatest == true;
-      });
-
-      // console.log(item);
-      return (
-        <EventCard
-          Title={item.event_display_name}
-          Image={latestProduct.prod_main_png}
-          Description={latestProduct.prod_desc}
-          Date={`${item.event_start} | ${item.event_end}`}
-          LastUpdated={latestProduct.prod_date}
-          Tags={item.event_type_tags}
-          key={item.event_display_name}
-          onClick={() => {
-            Navigate(getRoute("leaflet"), {
-              state: {
-                event: item,
-                product_list: item.product_list,
-              },
-            });
-          }}
-        />
-      );
-    });
-  };
-
   return (
     <AnimatePresence mode={"wait"}>
-      <AppHeader />
+      {/* <AppHeader /> */}
       {isLoading ? (
         <motion.div
           height={"100vh"}
@@ -279,24 +211,6 @@ const HomePage = () => {
               }}
             >
               <GreetingCard sx={{ width: { md: "50%", xs: "95%" } }} />
-            </Box>
-            {/* 
-<Grid
-  sx={{ padding: "1rem" }}
-  container
-  spacing={{ xs: 2, md: 3 }}
->
-  {MapEventCards(paginatedData)}
-</Grid> */}
-            <Box width={"100%"} display={"flex"} justifyContent={"center"}>
-              <Pagination
-                // variant="outlined"
-                color="primary"
-                count={Math.ceil(filteredMetadata?.length / itemsPerPage)}
-                page={page}
-                onChange={handlePageChange}
-                size="large"
-              />
             </Box>
           </Box>
         </>

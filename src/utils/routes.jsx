@@ -1,6 +1,7 @@
 import HomePage from "pages/Home/Home";
 import Error404Page from "pages/Error/E404";
 import FAQPage from "pages/FAQ/FAQ";
+import LoginPage from "pages/Login/Login";
 
 const RoutePaths = [
   {
@@ -15,8 +16,16 @@ const RoutePaths = [
     type: "route",
     name: "Home Page",
     key: "home",
-    route: "/",
+    route: "/home",
     component: <HomePage />,
+  },
+
+  {
+    type: "route",
+    name: "Login",
+    key: "login",
+    route: "/",
+    component: <LoginPage />,
   },
 
   {
