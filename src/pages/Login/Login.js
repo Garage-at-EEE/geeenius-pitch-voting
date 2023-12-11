@@ -15,6 +15,8 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
+import { APP_SCRIPT } from "./constants";
+
 const LoginPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [matricNumber, setMatricNumber] = useState("");
@@ -33,24 +35,25 @@ const LoginPage = () => {
     setName(event.target.value);
   };
 
+  const value = useMetadataContext();
+
+  console.log(value);
+
   const handleSubmit = async () => {
     console.log(matricNumber);
     console.log(birthday);
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwTenNi8O1k4BRmHyYYDZlvB85Pc8YvTMDusWE-an5vXfzTRmMUU7LI4LDhV_Vv0T06/exec",
-        {
-          method: "POST",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-          body: JSON.stringify({
-            action: "register",
-            value: { matric: matricNumber, name: name },
-          }),
-        }
-      );
+      const response = await fetch(APP_SCRIPT, {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: JSON.stringify({
+          action: "register",
+          value: { matric: matricNumber, name: name },
+        }),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -121,7 +124,7 @@ const LoginPage = () => {
                 onChange={handleMatricNumberChange}
               />
               <TextField
-                label="Birthday (dd/mm)"
+                label="Birthday (ddmm)"
                 variant="outlined"
                 fullWidth
                 margin="normal"

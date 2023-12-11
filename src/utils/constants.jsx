@@ -17,6 +17,9 @@ export const GRAPHQL = HOST + "/graphql";
 
 export const HEADER_HEIGHT = "76px";
 
+export const APP_SCRIPT =
+  "https://script.google.com/macros/s/AKfycbwjQT61gAbZ0JlnHOMKkWm4EgCyuHHvyf2h6jepAv1v5JCOvszqsjSdNhhtN83iZlLN/exec";
+
 const GearAnimation = () => {
   return (
     <motion.div
