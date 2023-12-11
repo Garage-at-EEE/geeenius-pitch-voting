@@ -6,7 +6,6 @@ import { ThemeProvider, responsiveFontSizes, CssBaseline } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import "index.css";
 import { useMetadataContext } from "context/MetadataContext";
-import MetadataProvider from "provider/MetadataProvider";
 //context: https://github.com/vasturiano/react-force-graph/issues/409
 
 let theme = createTheme({
@@ -48,9 +47,7 @@ theme = responsiveFontSizes(theme);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider theme={theme}>
-    <MetadataProvider>
-      <CssBaseline />
-      <WebRoute />
-    </MetadataProvider>
+    <CssBaseline />
+    <WebRoute />
   </ThemeProvider>
 );
