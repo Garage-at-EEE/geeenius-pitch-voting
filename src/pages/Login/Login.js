@@ -39,15 +39,15 @@ const LoginPage = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwTenNi8O1k4BRmHyYYDZlvB85Pc8YvTMDusWE-an5vXfzTRmMUU7LI4LDhV_Vv0T06/exec",
+        "https://script.google.com/macros/s/AKfycbwjQT61gAbZ0JlnHOMKkWm4EgCyuHHvyf2h6jepAv1v5JCOvszqsjSdNhhtN83iZlLN/exec",
         {
           method: "POST",
           // headers: {
           //   "Content-Type": "application/json",
           // },
           body: JSON.stringify({
-            action: "register",
-            value: { matric: matricNumber, name: name },
+            action: "login",
+            value: { matric: matricNumber, name: name, passcode: birthday },
           }),
         }
       );
