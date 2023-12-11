@@ -41,10 +41,9 @@ const LoginPage = () => {
       const response = await fetch(
         "https://script.google.com/macros/s/AKfycbwTenNi8O1k4BRmHyYYDZlvB85Pc8YvTMDusWE-an5vXfzTRmMUU7LI4LDhV_Vv0T06/exec",
         {
-          redirect: "follow",
           method: "POST",
           headers: {
-            "Content-Type": "text/plain;charset=utf-8",
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             action: "register",
