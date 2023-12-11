@@ -44,16 +44,19 @@ const LoginPage = () => {
     console.log(birthday);
     setLoading(true);
     try {
-      const response = await fetch(APP_SCRIPT, {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        body: JSON.stringify({
-          action: "register",
-          value: { matric: matricNumber, name: name },
-        }),
-      });
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwjQT61gAbZ0JlnHOMKkWm4EgCyuHHvyf2h6jepAv1v5JCOvszqsjSdNhhtN83iZlLN/exec",
+        {
+          method: "POST",
+          // headers: {
+          //   "Content-Type": "application/json",
+          // },
+          body: JSON.stringify({
+            action: "login",
+            value: { matric: matricNumber, name: name, passcode: birthday },
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
