@@ -31,6 +31,7 @@ const RotationWrapper = styled(motion.div)`
 
 export default function AccountCard(props) {
   // handle mouse move on document
+  const storedObject = JSON.parse(localStorage.getItem("geeenius"));
 
   return (
     <Box {...props}>
@@ -140,7 +141,7 @@ export default function AccountCard(props) {
                         color: "#294283",
                       }}
                     >
-                      Ricky Winarko
+                      {storedObject.name}
                     </Typography>
                     <Typography
                       variant="h5"

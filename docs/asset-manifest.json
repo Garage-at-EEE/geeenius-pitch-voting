@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/css/main.12d852b1.css",
-    "main.js": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.c3b7729e.js",
+    "main.js": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.8b94b85f.js",
     "static/media/garage_gang_pic.jpg": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/garage_gang_pic.05e4f5e3d144f588b8dc.jpg",
     "static/media/PROFILE PIC.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/PROFILE PIC.798457f7c8eec972d467.png",
     "static/media/Garage_Gang_Pic.png": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/Garage_Gang_Pic.d9cc2493b522d787db5e.png",
@@ -16,10 +16,10 @@
     "index.html": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/index.html",
     "static/media/noise.svg": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/media/noise.047c0d2fa455122226961c4b6ae3ffe8.svg",
     "main.12d852b1.css.map": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/css/main.12d852b1.css.map",
-    "main.c3b7729e.js.map": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.c3b7729e.js.map"
+    "main.8b94b85f.js.map": "https://Garage-at-EEE.github.io/geeenius-pitch-voting/static/js/main.8b94b85f.js.map"
   },
   "entrypoints": [
     "static/css/main.12d852b1.css",
-    "static/js/main.c3b7729e.js"
+    "static/js/main.8b94b85f.js"
   ]
 }

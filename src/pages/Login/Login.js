@@ -15,13 +15,19 @@ import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-import { APP_SCRIPT } from "./constants";
+import { APP_SCRIPT } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
   const [matricNumber, setMatricNumber] = useState("");
   const [birthday, setBirthday] = useState("");
   const [name, setName] = useState("");
+
+  if (localStorage.getItem("geeenius") != null) {
+    navigate("/home");
+  }
 
   const handleMatricNumberChange = (event) => {
     setMatricNumber(event.target.value);
@@ -35,35 +41,31 @@ const LoginPage = () => {
     setName(event.target.value);
   };
 
-  const value = useMetadataContext();
-
-  console.log(value);
-
   const handleSubmit = async () => {
-    console.log(matricNumber);
-    console.log(birthday);
     setLoading(true);
     try {
-      const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbwjQT61gAbZ0JlnHOMKkWm4EgCyuHHvyf2h6jepAv1v5JCOvszqsjSdNhhtN83iZlLN/exec",
-        {
-          method: "POST",
-          // headers: {
-          //   "Content-Type": "application/json",
-          // },
-          body: JSON.stringify({
-            action: "login",
-            value: { matric: matricNumber, name: name, passcode: birthday },
-          }),
-        }
-      );
+      const response = await fetch(APP_SCRIPT, {
+        method: "POST",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+        body: JSON.stringify({
+          action: "login",
+          value: { matric: matricNumber, name: name, passcode: birthday },
+        }),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const result = await response.json();
-      console.log("Response:", result);
+      localStorage.setItem(
+        "geeenius",
+        JSON.stringify(result.investment_portfolio)
+      );
+      console.log(result.investment_portfolio);
+      navigate("/home");
     } catch (error) {
       console.error("Error:", error.message);
     }

@@ -22,8 +22,42 @@ import GreetingCard from "components/MainPage/InnovatorCard";
 import { AnimatePresence, motion } from "framer-motion";
 import moment from "moment";
 import { Parallax } from "react-parallax";
+import { APP_SCRIPT } from "../../utils/constants";
+
+const fetchData = async (matric_num) => {
+  try {
+    const response = await fetch(APP_SCRIPT, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "profile",
+        value: { matric: matric_num },
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.state === 200) {
+      console.log(result);
+      localStorage.setItem("geeenius", JSON.stringify(result.profile));
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+};
 
 const HeroComponent = () => {
+  const storedObject = JSON.parse(localStorage.getItem("geeenius"));
+  const [portfolio, setPortfolio] = useState(storedObject);
+
+  useEffect(() => {
+    console.log("sending request");
+    fetchData(portfolio.matric);
+  }, []);
+
   return (
     <Parallax
       bgImage={BACKGROUND_IMG}
@@ -90,7 +124,7 @@ const HeroComponent = () => {
               fontWeight="800"
               color="white"
             >
-              $69.69
+              {"$" + portfolio["total_balance"]}
             </Typography>
             <Button
               variant="contained"
@@ -131,7 +165,6 @@ const HomePage = () => {
   const metadata = useMetadataContext();
   const Navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
 
   useEffect(() => {
     // Simulate a delay using setTimeout
