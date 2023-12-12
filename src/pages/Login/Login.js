@@ -25,10 +25,6 @@ const LoginPage = () => {
   const [birthday, setBirthday] = useState("");
   const [name, setName] = useState("");
 
-  if (localStorage.getItem("geeenius") != null) {
-    navigate("/home");
-  }
-
   const handleMatricNumberChange = (event) => {
     setMatricNumber(event.target.value);
   };
@@ -60,11 +56,12 @@ const LoginPage = () => {
       }
 
       const result = await response.json();
+      console.log("Data from login:");
+      console.log(result);
       localStorage.setItem(
         "geeenius",
         JSON.stringify(result.investment_portfolio)
       );
-      console.log(result.investment_portfolio);
       navigate("/home");
     } catch (error) {
       console.error("Error:", error.message);
@@ -73,6 +70,9 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("geeenius") != null) {
+      navigate("/home");
+    }
     // Simulate a delay using setTimeout
     const delay = 2000; // Adjust the delay time in milliseconds (e.g., 2000ms = 2 seconds)
 

@@ -24,40 +24,7 @@ import moment from "moment";
 import { Parallax } from "react-parallax";
 import { APP_SCRIPT } from "../../utils/constants";
 
-const fetchData = async (matric_num) => {
-  try {
-    const response = await fetch(APP_SCRIPT, {
-      method: "POST",
-      body: JSON.stringify({
-        action: "profile",
-        value: { matric: matric_num },
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const result = await response.json();
-
-    if (result.state === 200) {
-      console.log(result);
-      localStorage.setItem("geeenius", JSON.stringify(result.profile));
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-};
-
-const HeroComponent = () => {
-  const storedObject = JSON.parse(localStorage.getItem("geeenius"));
-  const [portfolio, setPortfolio] = useState(storedObject);
-
-  useEffect(() => {
-    console.log("sending request");
-    fetchData(portfolio.matric);
-  }, []);
-
+const HeroComponent = (props) => {
   return (
     <Parallax
       bgImage={BACKGROUND_IMG}
@@ -124,7 +91,7 @@ const HeroComponent = () => {
               fontWeight="800"
               color="white"
             >
-              {"$" + portfolio["total_balance"]}
+              {"$" + props.totalBalance}
             </Typography>
             <Button
               variant="contained"
@@ -163,21 +130,85 @@ const HeroComponent = () => {
 
 const HomePage = () => {
   const metadata = useMetadataContext();
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(true);
 
+  const [totalBalance, setTotalBalance] = useState("Loading");
+  const [returns, setReturns] = useState("Loading");
+  const [investments, setInvestments] = useState("Loading");
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [groupName, setGroupName] = useState("");
+  const [groupNo, setGroupNo] = useState("");
+  const [refresh, setRefresh] = useState(false);
+
   useEffect(() => {
-    // Simulate a delay using setTimeout
-    const delay = 2000; // Adjust the delay time in milliseconds (e.g., 2000ms = 2 seconds)
+    async function fetchMyAPI(matric) {
+      try {
+        const response = await fetch(APP_SCRIPT, {
+          method: "POST",
+          body: JSON.stringify({
+            action: "profile",
+            value: { matric: matric },
+          }),
+        });
 
-    const timer = setTimeout(() => {
-      // After the delay, change the loading state to false
-      setLoading(false);
-    }, delay);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
 
-    // Clean up the timer to prevent memory leaks
-    return () => clearTimeout(timer);
+        const result = await response.json();
+        if ((result.state = 200)) {
+          console.log("Data from Home:");
+          console.log(result);
+          setTotalBalance(result["profile"].total_balance);
+          setReturns(result["profile"].returns);
+          setInvestments(result["profile"].investments);
+          setCurrentIndex(result.index);
+          setGroupName(result.group_name);
+          setGroupNo(result.group_no);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error:", error.message);
+        localStorage.removeItem("geeenius");
+        navigate("/");
+      }
+    }
+
+    if (localStorage.getItem("geeenius") == null) {
+      navigate("/");
+    } else {
+      const storedObject = JSON.parse(localStorage.getItem("geeenius"));
+      fetchMyAPI(storedObject.matric);
+    }
   }, []);
+
+  const handleCurrent = async () => {
+    setRefresh(true);
+    try {
+      const response = await fetch(APP_SCRIPT, {
+        method: "POST",
+        body: JSON.stringify({ action: "current", value: [] }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      if ((result.state = 200)) {
+        console.log("Data from Refresh:");
+        console.log(result);
+        setCurrentIndex(result.index);
+        setGroupNo(result.group_no);
+        setGroupName(result.group_name);
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+    setRefresh(false);
+  };
 
   return (
     <AnimatePresence mode={"wait"}>
@@ -195,7 +226,7 @@ const HomePage = () => {
         </motion.div>
       ) : (
         <>
-          <HeroComponent />
+          <HeroComponent totalBalance={totalBalance} />
           <Box
             sx={{
               display: "flex",
@@ -221,7 +252,6 @@ const HomePage = () => {
                 <Typography variant="h3" fontWeight="800">
                   Current Team
                 </Typography>
-                <Typography variant="h6">Click to view</Typography>
               </Box>
 
               <Stack direction={"row"} alignItems={"center"}>
@@ -232,7 +262,9 @@ const HomePage = () => {
                     borderRadius: "5rem",
                   }}
                 >
-                  <Typography variant="h5">Refresh Data!</Typography>
+                  <Typography variant="h5" onClick={handleCurrent}>
+                    {refresh ? "Refreshing..." : "Refresh Data!"}
+                  </Typography>
                 </Button>
               </Stack>
             </Box>
@@ -243,7 +275,16 @@ const HomePage = () => {
                 justifyContent: "center",
               }}
             >
-              <GreetingCard sx={{ width: { md: "50%", xs: "95%" } }} />
+              <GreetingCard
+                sx={{ width: { md: "50%", xs: "95%" } }}
+                totalBalance={[totalBalance, setTotalBalance]}
+                investments={[investments, setInvestments]}
+                groupdata={{
+                  currentIndex: currentIndex,
+                  groupNo: groupNo,
+                  groupName: groupName,
+                }}
+              />
             </Box>
           </Box>
         </>
