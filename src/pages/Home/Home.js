@@ -34,7 +34,6 @@ const HeroComponent = (props) => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: "-100%" }}
         transition={{ duration: 0.5 }}
-        style={{ paddingY: "8rem" }}
       >
         <Box
           sx={{
@@ -43,7 +42,7 @@ const HeroComponent = (props) => {
             backgroundPosition: "center",
             display: "flex",
             width: "100%",
-            height: "100vh",
+            minHeight: "100vh",
           }}
         >
           <Box
@@ -55,6 +54,7 @@ const HeroComponent = (props) => {
               alignItems: "center",
               flexDirection: "column",
               gap: "1rem",
+              paddingY: "4rem",
             }}
           >
             {/* <img src={BLUE_GARAGE_LOGO} height={"80px"} /> */}
@@ -65,9 +65,9 @@ const HeroComponent = (props) => {
               // fontWeight="800"
               color="white"
             >
-              Get ready to dive into a high-energy Shark Tank event where you,
-              as an investor, are on the hunt for the next big thing among the
-              electrifying startups at Garage@EEE!
+              Get ready to join Shark Tank where you, as an investor, are on the
+              hunt for the next unicorn among the electrifying startups at
+              Garage@EEE!
             </Typography>
 
             <AccountCard sx={{ width: { md: "50%", xs: "95%" } }} />
