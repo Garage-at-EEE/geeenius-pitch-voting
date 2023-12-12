@@ -99,70 +99,78 @@ export default function AccountCard(props) {
                     sx={{
                       flex: 2,
                       height: "100%",
-                      padding: 2,
+                      paddingLeft: 2,
                     }}
+                    gap={2}
                   >
-                    <Typography
-                      variant={"h5"}
-                      fontWeight={700}
-                      fontSize={10}
-                      sx={{
-                        textTransform: "uppercase",
-                        letterSpacing: 3,
-                        color: "#294283",
-                        m: 0,
-                      }}
-                    >
-                      Investor Portfolio
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textTransform: "uppercase",
-                        color: "#294283",
-                      }}
-                    >
-                      Big Money Corporation
-                    </Typography>
-                    <Typography
-                      variant="h5"
-                      fontWeight={700}
-                      fontSize={10}
-                      sx={{
-                        textTransform: "uppercase",
-                        letterSpacing: 3,
-                        color: "#294283",
-                      }}
-                    >
-                      Name
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textTransform: "uppercase",
-                        color: "#294283",
-                      }}
-                    >
-                      {storedObject.name}
-                    </Typography>
-                    <Typography
-                      variant="h5"
-                      fontWeight={700}
-                      fontSize={10}
-                      sx={{
-                        textTransform: "uppercase",
-                        letterSpacing: 3,
-                        color: "#294283",
-                      }}
-                    >
-                      Type
-                    </Typography>
-                    <Typography
-                      sx={{
-                        textTransform: "uppercase",
-                        color: "#294283",
-                      }}
-                    >
-                      Angel Investor
-                    </Typography>
+                    <Stack>
+                      <Typography
+                        variant={"h5"}
+                        fontWeight={700}
+                        fontSize={10}
+                        sx={{
+                          textTransform: "uppercase",
+                          letterSpacing: 3,
+                          color: "#294283",
+                          m: 0,
+                        }}
+                      >
+                        Investor Portfolio
+                      </Typography>
+                      <Typography
+                        sx={{
+                          textTransform: "uppercase",
+                          color: "#294283",
+                        }}
+                      >
+                        Big Money Corporation
+                      </Typography>
+                    </Stack>
+
+                    <Stack>
+                      <Typography
+                        variant="h5"
+                        fontWeight={700}
+                        fontSize={10}
+                        sx={{
+                          textTransform: "uppercase",
+                          letterSpacing: 3,
+                          color: "#294283",
+                        }}
+                      >
+                        Name
+                      </Typography>
+                      <Typography
+                        sx={{
+                          textTransform: "uppercase",
+                          color: "#294283",
+                        }}
+                      >
+                        {storedObject.name}
+                      </Typography>
+                    </Stack>
+                    <Stack>
+                      <Typography
+                        variant="h5"
+                        fontWeight={700}
+                        fontSize={10}
+                        sx={{
+                          textTransform: "uppercase",
+                          letterSpacing: 3,
+                          color: "#294283",
+                        }}
+                      >
+                        Type
+                      </Typography>
+                      <Typography
+                        sx={{
+                          textTransform: "uppercase",
+                          color: "#294283",
+                        }}
+                      >
+                        Angel Investor
+                      </Typography>
+                    </Stack>
                   </Stack>
 
                   <Box
