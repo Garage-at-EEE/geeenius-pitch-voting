@@ -47,7 +47,7 @@ const HeartAnimation = () => {
   );
 };
 
-const MoneyAnimation = () => {
+export const MoneyAnimation = () => {
   return (
     <motion.div
       style={{ width: "fit-content" }}

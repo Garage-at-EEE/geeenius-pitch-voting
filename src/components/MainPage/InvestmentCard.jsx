@@ -27,23 +27,11 @@ import {
 import styled from "@emotion/styled";
 import DynamicIconMUI from "components/Reusables/DynamicIconMUI";
 
-export default function InnovatorCard(props) {
+export default function InvestmentCard({ InvestmentData }) {
   const storedObject = JSON.parse(localStorage.getItem("geeenius"));
   const [investedAmount, setInvestedAmount] = useState(0);
   const [isInvested, setIsInvested] = useState(false);
   const [isInvesting, setIsInvesting] = useState(false);
-
-  if (
-    props.investments[0][props.groupdata["currentIndex"] - 1] === "" &&
-    isInvested === true
-  ) {
-    setIsInvested(false);
-  } else if (
-    props.investments[0][props.groupdata["currentIndex"] - 1] !== "" &&
-    isInvested === false
-  ) {
-    setIsInvested(true);
-  }
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -87,22 +75,6 @@ export default function InnovatorCard(props) {
       console.error("Error:", error.message);
     }
     setIsInvesting(false);
-  };
-
-  const handleInvest = async () => {
-    setOpenDialog(true);
-  };
-
-  const handleIncreaseInvestment = () => {
-    if (investedAmount < props.totalBalance[0]) {
-      setInvestedAmount(investedAmount + 25); // Change the amount as needed
-    }
-  };
-
-  const handleDecreaseInvestment = () => {
-    if (investedAmount > 0) {
-      setInvestedAmount(investedAmount - 25); // Change the amount as needed
-    }
   };
 
   return (
@@ -245,61 +217,9 @@ export default function InnovatorCard(props) {
                 </Box>
               </>
             )}
-
-            {/* Investment indicator */}
-            {isInvested && (
-              <Box
-                textAlign="center"
-                mt={2}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <MoneyAnimation />
-                <Typography variant="h2" fontWeight={500} color="white">
-                  {props.groupdata["groupName"] + "\nInvested!"}
-                </Typography>
-              </Box>
-            )}
           </Box>
         </DefaultCard>
       </FadeInWhenVisible>
-
-      <Dialog
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        aria-labelledby="confirm-investment-dialog"
-        maxWidth="xs"
-      >
-        <DialogTitle sx={{ backgroundColor: "#294283", color: "white" }}>
-          Confirm Investment
-        </DialogTitle>
-        <DialogContent sx={{ backgroundColor: "#fff" }} dividers>
-          <Typography variant="body1" color={"black"}>
-            Are you sure you want to invest <b>${investedAmount}</b>?
-          </Typography>
-        </DialogContent>
-        <DialogActions sx={{ backgroundColor: "#fff", padding: "8px 16px" }}>
-          <Button
-            onClick={() => setOpenDialog(false)}
-            color="error"
-            variant="outlined"
-            sx={{ marginRight: "8px" }}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleConfirmInvestment}
-            color="primary"
-            variant="contained"
-          >
-            Confirm
-          </Button>
-        </DialogActions>
-      </Dialog>
     </Box>
   );
 }
